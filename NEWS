@@ -1,5 +1,12 @@
 
 
+CHANGES IN VERSION 1.4.1 [2017-11-2]
+-----------------------------------
+
+BUG FIXES
+
+    o Fixed bug in read/write across atoms
+
 CHANGES IN VERSION 1.3.8 [2017-10-26]
 -----------------------------------
 
