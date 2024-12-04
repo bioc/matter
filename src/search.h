@@ -256,7 +256,7 @@ void do_quick_sort(int * ptr, T * x, size_t start, size_t end, bool ind1 = false
 	T * dup = R_Calloc(n, T);
 	std::memcpy(dup, x + start, n * sizeof(T));
 	quick_sort(dup, 0, n, ptr);
-	Free(dup);
+	R_Free(dup);
 }
 
 // sort an array x and return ranks in ptr
@@ -301,8 +301,8 @@ index_t do_quick_rank(int * ptr, T * x, size_t start, size_t end, bool ties_max 
 			rank += count;
 		}
 	}
-	Free(indx);
-	Free(dup);
+	R_Free(indx);
+	R_Free(dup);
 	return rank;
 }
 
@@ -345,7 +345,7 @@ void do_quick_select(T * ptr, T * x, size_t start, size_t end, int * k, size_t n
 		else 
 			ptr[i] = ptr[i - 1];
 	}
-	Free(dup);
+	R_Free(dup);
 }
 
 //// Median
@@ -374,7 +374,7 @@ double quick_median(T * x, size_t n)
 	}
 	else
 		result = quick_select(dup, 0, n, k);
-	Free(dup);
+	R_Free(dup);
 	return result;
 }
 
@@ -394,7 +394,7 @@ double quick_mad(T * x, size_t n, double center = NA_REAL, double scale = 1.4826
 			dev[i] = std::fabs(x[i] - center);
 	}
 	double mad = scale * quick_median(dev, n);
-	Free(dev);
+	R_Free(dev);
 	return mad;
 }
 
@@ -554,8 +554,8 @@ index_t kd_tree_build(T * x, size_t k, size_t n,
 				xs[i] = x[n * jnext + indx[i]];
 		}
 	}
-	Free(indx);
-	Free(xs);
+	R_Free(indx);
+	R_Free(xs);
 	return root;
 }
 
@@ -839,7 +839,7 @@ void do_knn_self_search(int * ptr, T * data, size_t k, size_t n,
 		for ( int l = 0; l < knn; l++ )
 			ptr[l * n + i] = nn[l];
 	}
-	Free(parent);
+	R_Free(parent);
 }
 
 #endif // SEARCH

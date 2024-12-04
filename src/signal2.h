@@ -241,7 +241,7 @@ void mean_filter2(T * x, int nr, int nc, int width, double * buffer)
 				z[j * nr + i] /= width;
 		}
 	}
-	Free(y);
+	R_Free(y);
 }
 
 template<typename T>
@@ -425,7 +425,7 @@ void diffusion_filter2(T * x, int nr, int nc, int niter,
 			}
 		}
 	}
-	Free(tmp);
+	R_Free(tmp);
 }
 
 template<typename T>
@@ -503,8 +503,8 @@ void guided_filter2(T * x, T * g, int nr, int nc, int width,
 	// calculate output signal
 	for ( size_t i = 0; i < n; i++ )
 		buffer[i] = ua[i] * g[i] + ub[i];
-	Free(tmp);
-	Free(u);
+	R_Free(tmp);
+	R_Free(u);
 }
 
 //// Contrast enhancement
@@ -563,9 +563,9 @@ void histeq(T * x, size_t n, int nbins, double * buffer)
 		if ( !isNA(buffer[i]) )
 			buffer[i] /= vmax;
 	}
-	Free(hist);
-	Free(ecdf);
-	Free(v);
+	R_Free(hist);
+	R_Free(ecdf);
+	R_Free(v);
 }
 
 template<typename T>
@@ -704,9 +704,9 @@ void adapt_histeq(T * x, int nr, int nc, int width,
 		if ( !isNA(buffer[i]) )
 			buffer[i] /= vmax;
 	}
-	Free(clhist);
-	Free(hist);
-	Free(v);
+	R_Free(clhist);
+	R_Free(hist);
+	R_Free(v);
 }
 
 //// Peak detection
@@ -880,9 +880,9 @@ size_t do_approx2(Tout * ptr, Txy * xi, Txy * yi, size_t ni, Txy * xy, Tz * z, s
 			num_matches++;
 		}
 	}
-	Free(right_child);
-	Free(left_child);
-	Free(indx);
+	R_Free(right_child);
+	R_Free(left_child);
+	R_Free(indx);
 	return num_matches;
 }
 

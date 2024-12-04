@@ -244,7 +244,7 @@ double do_quant(T * x, index_t lower, index_t upper, double prob)
 		k = j - 1;
 	// find the kth order statistic by sorting x
 	T q = quick_select(dup, 0, n, norm_ind(k, n));
-	Free(dup);
+	R_Free(dup);
 	return coerce_cast<double>(q);
 }
 
@@ -483,7 +483,7 @@ void diffusion_filter(T * x, size_t n, int niter,
 			x1[i] = x0[i] + rate * dx;
 		}
 	}
-	Free(tmp);
+	R_Free(tmp);
 }
 
 template<typename T>
@@ -575,8 +575,8 @@ void guided_filter(T * x, T * g, size_t n, int width,
 		else
 			buffer[i] = ua[i] * g[i] + ub[i];
 	}
-	Free(tmp);
-	Free(u);
+	R_Free(tmp);
+	R_Free(u);
 }
 
 //// Warping and alignment
@@ -637,7 +637,7 @@ void warp_dtw(Tx * x, Tx * y, Tt * tx, Tt * ty, int nx, int ny,
 		}
 		k++;
 	}
-	Free(D);
+	R_Free(D);
 }
 
 template<typename Tx, typename Tt>
@@ -740,8 +740,8 @@ void warp_dtwc(Tx * x, Tx * y, Tt * tx, Tt * ty, int nx, int ny,
 		}
 		k++;
 	}
-	Free(ptrs);
-	Free(D);
+	R_Free(ptrs);
+	R_Free(D);
 }
 
 // correlation between x and y (w/ interpolation)
@@ -866,9 +866,9 @@ void warp_cow(Tx * x, Tx * y, Tt * tx, Tt * ty, int nx, int ny,
 		index_t j = (x_nodes[i] - wa[i]);
 		x_nodes[i + 1] = W[pW[i] + j];
 	}
-	Free(ptrs);
-	Free(W);
-	Free(F);
+	R_Free(ptrs);
+	R_Free(W);
+	R_Free(F);
 }
 
 //// Binning and downsampling
@@ -1189,7 +1189,7 @@ void smooth_snip(T * x, size_t n, T * buffer, int m, bool decreasing = true)
 				y[i] = z[i];
 		}
 	}
-	Free(z);
+	R_Free(z);
 }
 
 //// Peak detection
@@ -1717,11 +1717,11 @@ size_t do_approx1(Tout * ptr, Tx * xi, size_t ni, Tx * x, Ty * y,
 			}
 		}
 	}
-	Free(processed);
+	R_Free(processed);
 	if ( need_sort )
 	{
-		Free(xs);
-		Free(ys);
+		R_Free(xs);
+		R_Free(ys);
 	}
 	return num_matches;
 }

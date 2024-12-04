@@ -319,7 +319,7 @@ class SparseArray : public Sparse {
 				nnz = do_approx1<Tind,Tval>(buffer, subscripts, size,
 					DataPtr<Tind>(j), DataPtr<Tval>(x), 0, XLENGTH(j),
 					tol(), tol_ref(), zero<Tval>(), sampler(), stride);
-				Free(subscripts);
+				R_Free(subscripts);
 			}
 			else
 			{
@@ -360,7 +360,7 @@ class SparseArray : public Sparse {
 			size_t nnz = do_approx1<Tind,Tval>(buffer, subscripts,
 				XLENGTH(indx), DataPtr<Tind>(j), DataPtr<Tval>(x), 0, XLENGTH(j),
 				tol(), tol_ref(), zero<Tval>(), sampler(), stride);
-			Free(subscripts);
+			R_Free(subscripts);
 			UNPROTECT(2);
 			return nnz;
 		}

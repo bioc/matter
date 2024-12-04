@@ -1,7 +1,9 @@
 #ifndef MATTER_DEFINES
 #define MATTER_DEFINES
 
-#define R_NO_REMAP
+#ifndef R_NO_REMAP
+#define R_NO_REMAP 1
+#endif
 
 #include <R.h>
 #include <Rinternals.h>

@@ -54,7 +54,7 @@ class DataSources {
 					close(i);
 			}
 			_sources = NULL;
-			Free(_sources);
+			R_Free(_sources);
 		}
 
 		SourceInterface * open(int src)
@@ -359,13 +359,13 @@ class Atoms {
 			index_t off = offset(atom, pos);
 			bool success = _io.rseek(source(atom), off)->read<Tin>(tmp, size);
 			if ( !success ) {
-				Free(tmp);
+				R_Free(tmp);
 				self_destruct();
 				Rf_error("failed to read data elements");
 			}
 			for ( size_t i = 0; i < size; i++ )
 				ptr[stride * i] = coerce_cast<Tout>(tmp[i]);
-			Free(tmp);
+			R_Free(tmp);
 			return size;
 		}
 
@@ -386,11 +386,11 @@ class Atoms {
 			index_t off = offset(atom, pos);
 			bool success = _io.wseek(source(atom), off)->write<Tout>(tmp, size);
 			if ( !success ) {
-				Free(tmp);
+				R_Free(tmp);
 				self_destruct();
 				Rf_error("failed to write data elements");
 			}
-			Free(tmp);
+			R_Free(tmp);
 			return size;
 		}
 
